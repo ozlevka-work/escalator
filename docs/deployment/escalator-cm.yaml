@@ -6,20 +6,27 @@ metadata:
 data:
   nodegroups_config.yaml: |
     node_groups:
-      - name: "default"
-        label_key: "customer"
-        label_value: "shared"
-        cloud_provider_group_name: "shared-nodes"
+      - name: "browsers"
+        label_key: "browsers"
+        label_value: "yes"
+        cloud_provider_group_name: "eksctl-webgl2-dev-nodegroup-webgl-browsers-NodeGroup-WS9B7TS1GVPB"
         min_nodes: 1
-        max_nodes: 30
+        max_nodes: 100
         dry_mode: false
         taint_upper_capacity_threshold_percent: 40
         taint_lower_capacity_threshold_percent: 10
-        slow_node_removal_rate: 2
-        fast_node_removal_rate: 5
-        scale_up_threshold_percent: 70
-        scale_up_cool_down_period: 2m
+        slow_node_removal_rate: 1
+        fast_node_removal_rate: 3
+        scale_up_threshold_percent: 55
+        scale_up_cool_down_period: 3m
         scale_up_cool_down_timeout: 10m
         soft_delete_grace_period: 1m
-        hard_delete_grace_period: 10m
-        taint_effect: "NoSchedule"
+        hard_delete_grace_period: 60m
+        taint_effect: NoSchedule
+        aws:
+            fleet_instance_ready_timeout: 2m
+            launch_template_version: "1"
+            launch_template_id: "lt-059f009bc63878d55"
+            lifecycle: spot
+            instance_type_overrides: ["m5.large", "c5.large"]
+            resource_tagging: false

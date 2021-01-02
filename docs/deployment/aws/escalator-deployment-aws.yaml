@@ -19,8 +19,10 @@ spec:
         role: escalator
     spec:
       serviceAccountName: escalator
+      nodeSelector:
+        management: "yes"
       containers:
-      - image: atlassian/escalator
+      - image: ozlevka/escalator:1
         command:
         - ./main
         - --nodegroups
@@ -37,7 +39,7 @@ spec:
               apiVersion: v1
               fieldPath: metadata.name
         - name: AWS_REGION
-          value: INSERT_A_REGION_HERE
+          value: us-east-1
         volumeMounts:
         - name: escalator-nodegroups
           mountPath: /opt/conf/nodegroups

@@ -18,7 +18,7 @@ spec:
     spec:
       serviceAccountName: escalator
       containers:
-      - image: atlassian/escalator
+      - image: ozlevka/escalator:1
         command:
         - ./main
         - --nodegroups
